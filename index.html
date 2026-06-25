@@ -311,6 +311,60 @@
         transition-duration: 0.01ms !important;
       }
     }
+
+    /* ─────────────── RESPONSIVE ─────────────── */
+    @media (max-width: 768px) {
+
+      /* Section padding */
+      .rsp-section { padding-top: 56px !important; padding-bottom: 56px !important; padding-left: 16px !important; padding-right: 16px !important; }
+
+      /* Hero grid → single column */
+      .rsp-hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; padding: 40px 16px 56px !important; }
+
+      /* Generic 2-col → single column */
+      .rsp-2col { grid-template-columns: 1fr !important; gap: 32px !important; }
+
+      /* Stats 4-col → 2×2 */
+      .rsp-stats { grid-template-columns: 1fr 1fr !important; }
+
+      /* 3-col steps → single column */
+      .rsp-3col { grid-template-columns: 1fr !important; gap: 40px !important; }
+
+      /* Contact form email/phone row → stack */
+      .rsp-form-row { grid-template-columns: 1fr !important; }
+
+      /* CTA banner → column */
+      .rsp-cta-banner { flex-direction: column !important; text-align: center !important; }
+
+      /* Machine image: give explicit height when stacked */
+      .rsp-machine-col { min-height: 420px !important; }
+
+      /* Hide partnership horizontal connectors */
+      .rsp-step-line { display: none !important; }
+
+      /* Opportunity box padding */
+      .rsp-opp-box { padding: 28px 20px !important; }
+
+      /* ROI section top card padding */
+      .rsp-roi-card { padding: 24px !important; }
+
+      /* ROI projection stat numbers — prevent wrapping */
+      .rsp-roi-stat-num { white-space: nowrap !important; font-size: 1.1rem !important; }
+
+      /* Stat cells padding */
+      .rsp-stat-cell { padding: 28px 16px !important; }
+
+      /* Hero right column (machine mockup): smaller on mobile */
+      .rsp-hero-right { transform: scale(0.85) !important; transform-origin: top center !important; }
+
+      /* Reduce large gaps in opportunity/partnership sections */
+      .rsp-inner-pad { padding: 28px 20px !important; }
+    }
+
+    @media (max-width: 480px) {
+      .rsp-stats { grid-template-columns: 1fr 1fr !important; }
+      .rsp-hero-grid { padding: 32px 16px 48px !important; }
+    }
   </style>
 </head>
 <body>
@@ -332,7 +386,7 @@
 
     <!-- Links -->
     <div style="display:flex;align-items:center;gap:32px;">
-      <div style="display:flex;gap:28px;" class="hidden md:flex">
+      <div style="gap:28px;" class="hidden md:flex">
         <a href="#probleme" class="nav-link">Problème</a>
         <a href="#solution" class="nav-link">Solution</a>
         <a href="#roi" class="nav-link">ROI</a>
@@ -352,7 +406,7 @@
     <div style="position:absolute;top:30%;left:40%;width:40%;height:40%;background:radial-gradient(ellipse at center, #22c55e08 0%, transparent 60%);"></div>
   </div>
 
-  <div style="max-width:1200px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;">
+  <div class="rsp-hero-grid" style="max-width:1200px;margin:0 auto;padding:80px 24px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;">
 
     <!-- Left: Text -->
     <div style="animation:slide-up 0.7s cubic-bezier(0.4,0,0.2,1) both;">
@@ -503,7 +557,7 @@
 </section>
 
 <!-- ───────────────── PROBLÈME ───────────────── -->
-<section id="probleme" style="padding:96px 24px;background:#0b1628;position:relative;">
+<section id="probleme" class="rsp-section" style="padding:96px 24px;background:#0b1628;position:relative;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="margin-bottom:56px;">
       <div class="section-label" style="margin-bottom:12px;">01 — Le problème</div>
@@ -544,15 +598,15 @@
 </section>
 
 <!-- ───────────────── SOLUTION ───────────────── -->
-<section id="solution" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
+<section id="solution" class="rsp-section" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
   <div style="position:absolute;top:-20%;right:-10%;width:50%;height:70%;background:radial-gradient(ellipse at center, #22c55e08 0%, transparent 60%);pointer-events:none;"></div>
 
   <div style="max-width:1200px;margin:0 auto;">
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;">
+    <div class="rsp-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:stretch;">
 
       <!-- Left: Machine photo -->
       <div style="display:flex;flex-direction:column;">
-        <div style="flex:1;border-radius:24px;overflow:hidden;position:relative;background:#070e1a;box-shadow:0 0 0 1px #1d3a5c, 0 32px 80px #00000060, 0 0 80px #22c55e12;">
+        <div class="rsp-machine-col" style="flex:1;border-radius:24px;overflow:hidden;position:relative;background:#070e1a;box-shadow:0 0 0 1px #1d3a5c, 0 32px 80px #00000060, 0 0 80px #22c55e12;">
           <img
             src="assets/machine_sans_logo.PNG"
             alt="iShaker Shaker Touch 2 — distributeur automatique de shakers protéinés"
@@ -624,7 +678,7 @@
 </section>
 
 <!-- ───────────────── MARCHÉ ───────────────── -->
-<section style="padding:96px 24px;background:#0b1628;position:relative;">
+<section class="rsp-section" style="padding:96px 24px;background:#0b1628;position:relative;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:64px;">
       <div class="section-label" style="margin-bottom:12px;">03 — Le marché</div>
@@ -634,27 +688,27 @@
     </div>
 
     <!-- Stats -->
-    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1d3a5c;border-radius:20px;overflow:hidden;margin-bottom:48px;">
-      <div style="background:#0f2040;padding:36px 24px;text-align:center;">
+    <div class="rsp-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1d3a5c;border-radius:20px;overflow:hidden;margin-bottom:48px;">
+      <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
         <div class="stat-number">10M+</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">licenciés<br />en salle de sport</div>
       </div>
-      <div style="background:#0f2040;padding:36px 24px;text-align:center;">
+      <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
         <div class="stat-number">68%</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">consomment des<br />compléments sportifs</div>
       </div>
-      <div style="background:#0f2040;padding:36px 24px;text-align:center;">
+      <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
         <div class="stat-number">+8%</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">croissance annuelle<br />du marché protéines</div>
       </div>
-      <div style="background:#0f2040;padding:36px 24px;text-align:center;">
+      <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
         <div class="stat-number">5–8€</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">prix moyen<br />d'un shake premium</div>
       </div>
     </div>
 
     <!-- Opportunity text -->
-    <div style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:40px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
+    <div class="rsp-2col rsp-opp-box" style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:40px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;">
       <div>
         <h3 style="font-size:1.5rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:16px;color:#f0f6ff;">Aucun acteur dominant en France</h3>
         <p style="color:#6b8aad;line-height:1.7;font-size:0.9rem;">Les salles de sport cherchent activement à générer de nouveaux revenus passifs. Notre distributeur répond exactement à ce besoin — et personne ne l'a encore fait à grande échelle.</p>
@@ -678,7 +732,7 @@
 </section>
 
 <!-- ───────────────── ROI ───────────────── -->
-<section id="roi" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
+<section id="roi" class="rsp-section" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
   <div style="position:absolute;bottom:-10%;left:-5%;width:50%;height:60%;background:radial-gradient(ellipse at center, #22c55e08 0%, transparent 60%);pointer-events:none;"></div>
 
   <div style="max-width:1200px;margin:0 auto;">
@@ -689,10 +743,10 @@
       </h2>
     </div>
 
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
+    <div class="rsp-2col" style="display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:start;">
 
       <!-- Per-shake breakdown -->
-      <div style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:36px;">
+      <div class="rsp-roi-card" style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:36px;">
         <h3 style="font-size:1rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#6b8aad;margin-bottom:24px;font-family:'Plus Jakarta Sans',sans-serif;">Économie par shake</h3>
 
         <div class="roi-row">
@@ -723,11 +777,11 @@
           <div style="display:flex;gap:16px;">
             <div style="flex:1;background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
               <div style="font-size:0.7rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">CA mensuel</div>
-              <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">2 250–5 000 €</div>
+              <div class="rsp-roi-stat-num" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">2&nbsp;250–5&nbsp;000&nbsp;€</div>
             </div>
             <div style="flex:1;background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
               <div style="font-size:0.7rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Marge brute</div>
-              <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">1 120–2 500 €</div>
+              <div class="rsp-roi-stat-num" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">1&nbsp;120–2&nbsp;500&nbsp;€</div>
             </div>
           </div>
         </div>
@@ -751,7 +805,7 @@
 </section>
 
 <!-- ───────────────── PARTENARIAT ───────────────── -->
-<section id="partenariat" style="padding:96px 24px;background:#0b1628;position:relative;">
+<section id="partenariat" class="rsp-section" style="padding:96px 24px;background:#0b1628;position:relative;">
   <div style="max-width:1200px;margin:0 auto;">
     <div style="text-align:center;margin-bottom:64px;">
       <div class="section-label" style="margin-bottom:12px;">06 — Comment ça marche</div>
@@ -762,10 +816,10 @@
     </div>
 
     <!-- Steps -->
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative;">
+    <div class="rsp-3col" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;position:relative;">
       <!-- Connector lines -->
-      <div style="position:absolute;top:32px;left:calc(33.33% - 20px);width:calc(33.33% + 40px);height:1px;background:linear-gradient(to right,#22c55e40,#1d3a5c);z-index:0;"></div>
-      <div style="position:absolute;top:32px;left:calc(66.66% - 20px);width:calc(33.33% + 20px);height:1px;background:linear-gradient(to right,#22c55e20,transparent);z-index:0;"></div>
+      <div class="rsp-step-line" style="position:absolute;top:32px;left:calc(33.33% - 20px);width:calc(33.33% + 40px);height:1px;background:linear-gradient(to right,#22c55e40,#1d3a5c);z-index:0;"></div>
+      <div class="rsp-step-line" style="position:absolute;top:32px;left:calc(66.66% - 20px);width:calc(33.33% + 20px);height:1px;background:linear-gradient(to right,#22c55e20,transparent);z-index:0;"></div>
 
       <!-- Step 1 -->
       <div style="text-align:center;position:relative;z-index:1;">
@@ -796,7 +850,7 @@
     </div>
 
     <!-- CTA banner -->
-    <div style="margin-top:64px;background:#0f2040;border:1px solid #22c55e20;border-radius:20px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+    <div class="rsp-cta-banner rsp-inner-pad" style="margin-top:64px;background:#0f2040;border:1px solid #22c55e20;border-radius:20px;padding:40px 48px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
       <div>
         <h3 style="font-size:1.3rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:8px;color:#f0f6ff;">Prêt à générer des revenus passifs dans votre salle ?</h3>
         <p style="color:#6b8aad;font-size:0.875rem;">Rejoignez le réseau ShakeNGo. Les premières machines disponibles en France dès 2025.</p>
@@ -807,7 +861,7 @@
 </section>
 
 <!-- ───────────────── CONTACT ───────────────── -->
-<section id="contact" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
+<section id="contact" class="rsp-section" style="padding:96px 24px;background:#070e1a;position:relative;overflow:hidden;">
   <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(ellipse at center, #22c55e0a 0%, transparent 70%);pointer-events:none;"></div>
 
   <div style="max-width:600px;margin:0 auto;position:relative;">
@@ -827,7 +881,7 @@
           <input type="text" name="gym_name" class="form-input" placeholder="ex. Basic-Fit Lyon Centre" required />
         </div>
 
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div class="rsp-form-row" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div>
             <label style="display:block;font-size:0.8rem;font-weight:600;color:#6b8aad;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:8px;">Email *</label>
             <input type="email" name="email" class="form-input" placeholder="vous@salle.fr" required />
