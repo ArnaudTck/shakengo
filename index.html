@@ -550,66 +550,19 @@
   <div style="max-width:1200px;margin:0 auto;">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;">
 
-      <!-- Left: Image placeholder with device label -->
+      <!-- Left: Machine photo -->
       <div style="position:relative;">
-        <div style="background:#0f2040;border:1px solid #1d3a5c;border-radius:24px;overflow:hidden;aspect-ratio:3/4;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;">
-          <!-- Inline SVG machine illustration -->
-          <svg viewBox="0 0 280 420" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:90%;max-width:260px;filter:drop-shadow(0 0 40px #22c55e20);">
-            <!-- Machine body -->
-            <rect x="20" y="10" width="240" height="400" rx="16" fill="#060d18" stroke="#1d3a5c" stroke-width="1.5"/>
-            <!-- Screen bezel -->
-            <rect x="36" y="26" width="208" height="280" rx="10" fill="#0a1220" stroke="#1d3a5c" stroke-width="1"/>
-            <!-- Screen content -->
-            <rect x="44" y="34" width="192" height="264" rx="7" fill="#0b1628"/>
-            <!-- ISHAKER header on screen -->
-            <rect x="44" y="34" width="192" height="28" rx="7" fill="#060d18"/>
-            <text x="140" y="52" text-anchor="middle" font-family="monospace" font-size="9" font-weight="700" fill="#4ade80" letter-spacing="5">ISHAKER</text>
-            <!-- Green CTA button -->
-            <rect x="56" y="74" width="168" height="28" rx="6" fill="#22c55e"/>
-            <text x="140" y="92" text-anchor="middle" font-family="sans-serif" font-size="9" font-weight="700" fill="#070e1a">Choisissez votre shake</text>
-            <!-- Selected option -->
-            <rect x="56" y="108" width="168" height="24" rx="5" fill="#22c55e" opacity="0.15" stroke="#22c55e" stroke-width="1"/>
-            <circle cx="68" cy="120" r="4" fill="#22c55e"/>
-            <text x="80" y="124" font-family="sans-serif" font-size="8.5" fill="#f0f6ff" font-weight="600">Whey Classic</text>
-            <!-- Other options -->
-            <rect x="56" y="136" width="168" height="22" rx="5" fill="none" stroke="#1d3a5c" stroke-width="1"/>
-            <text x="68" y="151" font-family="sans-serif" font-size="8" fill="#6b8aad">Vegan Protein</text>
-            <rect x="56" y="162" width="168" height="22" rx="5" fill="none" stroke="#1d3a5c" stroke-width="1"/>
-            <text x="68" y="177" font-family="sans-serif" font-size="8" fill="#6b8aad">Mass Gainer</text>
-            <rect x="56" y="188" width="168" height="22" rx="5" fill="none" stroke="#1d3a5c" stroke-width="1"/>
-            <text x="68" y="203" font-family="sans-serif" font-size="8" fill="#6b8aad">Energy Shake</text>
-            <rect x="56" y="214" width="168" height="22" rx="5" fill="none" stroke="#1d3a5c" stroke-width="1"/>
-            <text x="68" y="229" font-family="sans-serif" font-size="8" fill="#6b8aad">BCAA Complex</text>
-            <!-- Price CTA -->
-            <rect x="56" y="242" width="168" height="30" rx="6" fill="#22c55e"/>
-            <text x="140" y="262" text-anchor="middle" font-family="sans-serif" font-size="10" font-weight="900" fill="#070e1a">6,50 € — VALIDER</text>
-            <!-- Cup dispense area -->
-            <rect x="56" y="280" width="168" height="10" rx="3" fill="#1d3a5c" opacity="0.5"/>
-            <!-- Animated cup fill zone -->
-            <rect x="96" y="296" width="88" height="0.5" fill="#22c55e" opacity="0.4"/>
-            <!-- Payment row -->
-            <rect x="56" y="286" width="168" height="0.5" fill="#1d3a5c"/>
-            <!-- Bottom dispense slot -->
-            <rect x="56" y="278" width="168" height="18" rx="5" fill="#060d18" stroke="#1d3a5c" stroke-width="0.75"/>
-            <text x="140" y="291" text-anchor="middle" font-family="sans-serif" font-size="7" fill="#3d5a7a">Paiement sans contact</text>
-            <!-- Machine bottom panel -->
-            <rect x="44" y="318" width="192" height="52" rx="6" fill="#060d18" stroke="#1d3a5c" stroke-width="0.75"/>
-            <rect x="80" y="330" width="120" height="6" rx="3" fill="#1d3a5c"/>
-            <rect x="56" y="346" width="50" height="14" rx="4" fill="#1a2d40"/>
-            <rect x="116" y="346" width="50" height="14" rx="4" fill="#1a2d40"/>
-            <rect x="176" y="346" width="50" height="14" rx="4" fill="#1a2d40"/>
-            <!-- Dispensing slot -->
-            <rect x="68" y="378" width="144" height="16" rx="4" fill="#060d18" stroke="#22c55e" stroke-width="0.75" stroke-opacity="0.4"/>
-            <text x="140" y="390" text-anchor="middle" font-family="sans-serif" font-size="6.5" fill="#22c55e" opacity="0.6" letter-spacing="1">DISTRIBUTION</text>
-            <!-- Green glow accent lines -->
-            <line x1="20" y1="320" x2="260" y2="320" stroke="#22c55e" stroke-width="0.5" stroke-opacity="0.3"/>
-            <line x1="20" y1="374" x2="260" y2="374" stroke="#22c55e" stroke-width="0.5" stroke-opacity="0.2"/>
-          </svg>
-          <!-- Gradient overlay at bottom -->
-          <div style="position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top, #0f2040ee, transparent);pointer-events:none;"></div>
+        <div style="border-radius:24px;overflow:hidden;position:relative;background:#070e1a;box-shadow:0 0 0 1px #1d3a5c, 0 32px 80px #00000060, 0 0 80px #22c55e12;">
+          <img
+            src="assets/machine_sans_logo.PNG"
+            alt="iShaker Shaker Touch 2 — distributeur automatique de shakers protéinés"
+            style="width:100%;display:block;object-fit:contain;filter:drop-shadow(0 0 40px #22c55e18);"
+          />
+          <!-- Gradient overlay at bottom for label readability -->
+          <div style="position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top, #070e1aee 30%, transparent);pointer-events:none;"></div>
           <div style="position:absolute;bottom:24px;left:24px;right:24px;">
             <div style="font-size:0.65rem;font-weight:700;letter-spacing:0.15em;color:#22c55e;text-transform:uppercase;margin-bottom:4px;">Alimenté par</div>
-            <div style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:#f0f6ff;letter-spacing:-0.03em;">iShaker Shaker Touch 2</div>
+            <div style="font-family:'Fraunces',serif;font-size:1.5rem;font-weight:900;color:#f0f6ff;letter-spacing:-0.03em;">iShaker Shaker Touch 2</div>
           </div>
         </div>
       </div>
