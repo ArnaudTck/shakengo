@@ -352,6 +352,42 @@
       /* ROI projection stat numbers — prevent wrapping */
       .rsp-roi-stat-num { white-space: nowrap !important; font-size: 1.1rem !important; }
 
+      /* Simulator sliders */
+      .sim-slider {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 4px;
+        border-radius: 2px;
+        outline: none;
+        cursor: pointer;
+        margin: 8px 0 4px;
+        transition: opacity 0.15s ease;
+      }
+      .sim-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #22c55e;
+        cursor: pointer;
+        box-shadow: 0 0 0 3px #22c55e20, 0 0 12px #22c55e40;
+        transition: transform 0.15s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.15s ease;
+      }
+      .sim-slider::-webkit-slider-thumb:hover {
+        transform: scale(1.25);
+        box-shadow: 0 0 0 5px #22c55e20, 0 0 20px #22c55e50;
+      }
+      .sim-slider::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #22c55e;
+        border: none;
+        cursor: pointer;
+        box-shadow: 0 0 0 3px #22c55e20;
+      }
+
       /* Stat cells padding */
       .rsp-stat-cell { padding: 28px 16px !important; }
 
@@ -411,7 +447,7 @@
       </div>
 
       <h1 style="font-family:'Fraunces',Georgia,serif;font-size:clamp(2.4rem,4.5vw,3.8rem);font-weight:900;letter-spacing:-0.04em;line-height:1.08;margin-bottom:24px;color:#f0f6ff;">
-        Offrez le shake<br />
+        Offrez le shaker<br />
         protéiné à vos<br />
         <em style="font-style:italic;color:#22c55e;">adhérents,</em><br />
         sans effort.
@@ -471,7 +507,7 @@
           <!-- Machine content -->
           <div style="padding:16px;display:flex;flex-direction:column;gap:8px;">
             <div style="text-align:center;padding:10px;background:#22c55e;color:#070e1a;font-weight:700;font-size:0.8rem;border-radius:8px;letter-spacing:0.04em;">
-              Choisissez votre shake
+              Choisissez votre shaker
             </div>
 
             <!-- Shake options -->
@@ -624,7 +660,7 @@
           Un distributeur conçu <em style="color:#22c55e;font-style:italic;">pour les salles de sport.</em>
         </h2>
         <p style="color:#6b8aad;font-size:0.95rem;line-height:1.7;margin-bottom:36px;max-width:420px;">
-          Le client choisit sa protéine sur l'écran tactile, le shake est préparé et dispensé en quelques secondes. Aucun personnel requis.
+          Le client choisit sa protéine sur l'écran tactile, le shaker est préparé et dispensé en quelques secondes. Aucun personnel requis.
         </p>
 
         <!-- Specs grid -->
@@ -709,7 +745,7 @@
       </div>
       <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
         <div class="stat-number" data-range="5-8" data-suffix="€">0–0€</div>
-        <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">prix moyen<br />d'un shake premium</div>
+        <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">prix moyen<br />d'un shaker premium</div>
       </div>
     </div>
 
@@ -753,11 +789,11 @@
 
       <!-- Per-shake breakdown -->
       <div class="rsp-roi-card" style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:36px;">
-        <h3 style="font-size:1rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#6b8aad;margin-bottom:24px;font-family:'Plus Jakarta Sans',sans-serif;">Économie par shake</h3>
+        <h3 style="font-size:1rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#6b8aad;margin-bottom:24px;font-family:'Plus Jakarta Sans',sans-serif;">Économie par shaker</h3>
 
         <div class="roi-row">
           <span style="color:#f0f6ff;">Prix de vente</span>
-          <span style="color:#f0f6ff;font-weight:600;">6,50 €</span>
+          <span id="sim-prix-vente" style="color:#f0f6ff;font-weight:600;">6,50 €</span>
         </div>
         <div class="roi-row">
           <span style="color:#6b8aad;">Coût ingrédient</span>
@@ -769,41 +805,63 @@
         </div>
         <div class="roi-row highlight">
           <span>Marge nette</span>
-          <span style="background:#22c55e15;border:1px solid #22c55e30;border-radius:8px;padding:4px 12px;">3,20 €</span>
+          <span id="sim-marge-nette" style="background:#22c55e15;border:1px solid #22c55e30;border-radius:8px;padding:4px 12px;">3,20 €</span>
         </div>
       </div>
 
-      <!-- Monthly projections -->
-      <div style="display:flex;flex-direction:column;gap:16px;">
-        <!-- Projection card -->
-        <div style="background:#0f2040;border:1px solid #1d3a5c;border-radius:20px;padding:32px;">
-          <h3 style="font-size:1rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#6b8aad;margin-bottom:20px;font-family:'Plus Jakarta Sans',sans-serif;">Projection mensuelle</h3>
-          <div style="font-size:0.85rem;color:#6b8aad;margin-bottom:16px;">15–25 shakes / jour</div>
+      <!-- Simulator -->
+      <div style="background:#0f2040;border:1px solid #22c55e30;border-radius:20px;padding:32px;display:flex;flex-direction:column;gap:28px;">
+        <div>
+          <h3 style="font-size:1rem;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;color:#6b8aad;margin-bottom:4px;font-family:'Plus Jakarta Sans',sans-serif;">Simulez votre revenu</h3>
+          <p style="font-size:0.8rem;color:#3d5a7a;">Ajustez les paramètres pour estimer votre retour.</p>
+        </div>
 
-          <div style="display:flex;gap:16px;">
-            <div style="flex:1;background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:0.7rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">CA mensuel</div>
-              <div class="rsp-roi-stat-num" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">2&nbsp;250–5&nbsp;000&nbsp;€</div>
+        <!-- Sliders row -->
+        <div style="display:grid;grid-template-columns:1fr 1px 1fr;gap:20px;align-items:center;">
+          <!-- Slider: price -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+              <label style="font-size:0.78rem;font-weight:600;color:#f0f6ff;">Prix par shaker</label>
+              <span id="sim-price-val" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;color:#22c55e;letter-spacing:-0.03em;">6,50 €</span>
             </div>
-            <div style="flex:1;background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
-              <div style="font-size:0.7rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Marge brute</div>
-              <div class="rsp-roi-stat-num" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;">1&nbsp;120–2&nbsp;500&nbsp;€</div>
+            <input id="sim-price" class="sim-slider" type="range" min="4" max="10" step="0.5" value="6.5" />
+            <div style="display:flex;justify-content:space-between;margin-top:2px;">
+              <span style="font-size:0.65rem;color:#3d5a7a;">4 €</span>
+              <span style="font-size:0.65rem;color:#3d5a7a;">10 €</span>
+            </div>
+          </div>
+          <!-- Divider -->
+          <div style="width:2px;height:100%;background:#1d3a5c;align-self:stretch;"></div>
+          <!-- Slider: volume -->
+          <div>
+            <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;">
+              <label style="font-size:0.78rem;font-weight:600;color:#f0f6ff;">Shakers / jour</label>
+              <span id="sim-vol-val" style="font-family:'Fraunces',serif;font-size:1.1rem;font-weight:900;color:#22c55e;letter-spacing:-0.03em;">20</span>
+            </div>
+            <input id="sim-vol" class="sim-slider" type="range" min="5" max="60" step="1" value="20" />
+            <div style="display:flex;justify-content:space-between;margin-top:2px;">
+              <span style="font-size:0.65rem;color:#3d5a7a;">5</span>
+              <span style="font-size:0.65rem;color:#3d5a7a;">60</span>
             </div>
           </div>
         </div>
 
-        <!-- ROI badges -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
-          <div style="background:#22c55e;border-radius:16px;padding:20px;text-align:center;">
-            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#070e1a;opacity:0.7;margin-bottom:4px;">Scénario optimiste</div>
-            <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:#070e1a;letter-spacing:-0.04em;line-height:1;">4–5 mois</div>
-            <div style="font-size:0.75rem;font-weight:700;color:#070e1a;opacity:0.8;margin-top:4px;">ROI atteint ✓</div>
+        <!-- Results grid -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:0.65rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">CA mensuel</div>
+            <div id="sim-ca" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;white-space:nowrap;">3 900 €</div>
           </div>
-          <div style="background:#0f2040;border:1px solid #1d3a5c;border-radius:16px;padding:20px;text-align:center;">
-            <div style="font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#6b8aad;margin-bottom:4px;">Scénario conservateur</div>
-            <div style="font-family:'Fraunces',serif;font-size:2rem;font-weight:900;color:#f0f6ff;letter-spacing:-0.04em;line-height:1;">7–9 mois</div>
-            <div style="font-size:0.75rem;color:#6b8aad;margin-top:4px;">ROI garanti</div>
+          <div style="background:#070e1a;border-radius:12px;padding:16px;text-align:center;">
+            <div style="font-size:0.65rem;color:#6b8aad;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:6px;">Marge brute</div>
+            <div id="sim-marge" style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;white-space:nowrap;">1 920 €</div>
           </div>
+        </div>
+
+        <!-- ROI result -->
+        <div id="sim-roi-bar" style="background:#22c55e;border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.06em;color:#070e1a;opacity:0.75;">ROI estimé</span>
+          <span id="sim-roi" style="font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:#070e1a;letter-spacing:-0.04em;line-height:1;">5,2 mois</span>
         </div>
       </div>
     </div>
@@ -851,7 +909,7 @@
           <span style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#f0f6ff;">3</span>
         </div>
         <h3 style="font-size:1.1rem;font-weight:700;letter-spacing:-0.02em;margin-bottom:10px;color:#f0f6ff;">Revenus passifs</h3>
-        <p style="color:#6b8aad;font-size:0.875rem;line-height:1.6;">Recevez votre commission (1 €/shake) chaque mois. Nous gérons le réapprovisionnement, la maintenance et le support technique.</p>
+        <p style="color:#6b8aad;font-size:0.875rem;line-height:1.6;">Recevez votre commission (1 €/shaker) chaque mois. Nous gérons le réapprovisionnement, la maintenance et le support technique.</p>
       </div>
     </div>
 
@@ -1019,6 +1077,57 @@
 
   const marcheStats = document.getElementById('marche-stats');
   if (marcheStats) marcheObserver.observe(marcheStats);
+
+  // ── ROI Simulator ──────────────────────────────────────────
+  const COST_INGREDIENT = 2.30;
+  const COST_COMMISSION = 1.00;
+  const MACHINE_COST    = 10000;
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString('fr-FR') + ' €';
+  }
+  function setSliderFill(id, min, max, val) {
+    const pct = ((val - min) / (max - min)) * 100;
+    document.getElementById(id).style.background =
+      `linear-gradient(to right, #22c55e ${pct}%, #1d3a5c ${pct}%)`;
+  }
+
+  function updateSim() {
+    const price = parseFloat(document.getElementById('sim-price').value);
+    const vol   = parseInt(document.getElementById('sim-vol').value);
+
+    const marginPerShake = price - COST_INGREDIENT - COST_COMMISSION;
+    const ca    = price * vol * 30;
+    const marge = marginPerShake * vol * 30;
+    const roi   = marge > 0 ? MACHINE_COST / marge : Infinity;
+
+    // Sliders
+    document.getElementById('sim-price-val').textContent =
+      price.toFixed(2).replace('.', ',') + ' €';
+    document.getElementById('sim-vol-val').textContent = vol;
+    setSliderFill('sim-price', 4, 10, price);
+    setSliderFill('sim-vol', 5, 60, vol);
+
+    // Results
+    document.getElementById('sim-ca').textContent    = fmt(ca);
+    document.getElementById('sim-marge').textContent = fmt(marge);
+    document.getElementById('sim-roi').textContent   =
+      roi < 99 ? roi.toFixed(1).replace('.', ',') + ' mois' : '> 99 mois';
+
+    // ROI bar colour: green if ≤ 9 months, amber if > 9
+    const bar = document.getElementById('sim-roi-bar');
+    bar.style.background = roi <= 9 ? '#22c55e' : '#f59e0b';
+
+    // Sync left card
+    document.getElementById('sim-prix-vente').textContent =
+      price.toFixed(2).replace('.', ',') + ' €';
+    document.getElementById('sim-marge-nette').textContent =
+      marginPerShake.toFixed(2).replace('.', ',') + ' €';
+  }
+
+  document.getElementById('sim-price').addEventListener('input', updateSim);
+  document.getElementById('sim-vol').addEventListener('input', updateSim);
+  updateSim();
 </script>
 
 </body>
