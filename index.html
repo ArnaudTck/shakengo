@@ -456,7 +456,7 @@
     </div>
 
     <!-- Right: Machine mockup -->
-    <div style="display:flex;justify-content:center;animation:fade-in 0.9s ease 0.2s both;">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:12px;animation:fade-in 0.9s ease 0.2s both;">
       <div style="position:relative;">
         <!-- Glow behind machine -->
         <div style="position:absolute;inset:-20px;background:radial-gradient(ellipse at center, #22c55e15 0%, transparent 70%);border-radius:50%;filter:blur(20px);"></div>
@@ -538,13 +538,14 @@
           <div style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;color:#22c55e;letter-spacing:-0.04em;line-height:1;">60s</div>
         </div>
 
-        <!-- Floating stats badge -->
-        <div style="position:absolute;bottom:-16px;left:-24px;background:#0f2040;border:1px solid #1d3a5c;border-radius:12px;padding:10px 16px;box-shadow:0 8px 24px #00000060;">
-          <div style="font-size:0.65rem;color:#6b8aad;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:2px;">Revenu passif</div>
-          <div style="display:flex;align-items:baseline;gap:4px;">
-            <span style="font-family:'Fraunces',serif;font-size:1.3rem;font-weight:900;color:#f0f6ff;letter-spacing:-0.04em;">2 250 €</span>
-            <span style="font-size:0.7rem;color:#22c55e;font-weight:600;">/mois</span>
-          </div>
+      </div>
+
+      <!-- Stats badge below machine -->
+      <div style="width:300px;background:#0f2040;border:1px solid #1d3a5c;border-radius:12px;padding:10px 16px;box-shadow:0 8px 24px #00000060;display:flex;align-items:center;justify-content:space-between;">
+        <div style="font-size:0.65rem;color:#6b8aad;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;">Revenu passif</div>
+        <div style="display:flex;align-items:baseline;gap:4px;">
+          <span style="font-family:'Fraunces',serif;font-size:1.3rem;font-weight:900;color:#f0f6ff;letter-spacing:-0.04em;">2 250 €</span>
+          <span style="font-size:0.7rem;color:#22c55e;font-weight:600;">/mois</span>
         </div>
       </div>
     </div>
