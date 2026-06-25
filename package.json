@@ -1,0 +1,26 @@
+﻿{
+    "name":  "shakengo",
+    "version":  "1.0.0",
+    "description":  "",
+    "main":  "index.js",
+    "scripts":  {
+                    "test":  "echo \"Error: no test specified\" \u0026\u0026 exit 1"
+                },
+    "repository":  {
+                       "type":  "git",
+                       "url":  "git+https://github.com/ArnaudTck/shakengo.git"
+                   },
+    "keywords":  [
+
+                 ],
+    "author":  "",
+    "license":  "ISC",
+    "type":  "module",
+    "bugs":  {
+                 "url":  "https://github.com/ArnaudTck/shakengo/issues"
+             },
+    "homepage":  "https://github.com/ArnaudTck/shakengo#readme",
+    "dependencies":  {
+                         "puppeteer-core":  "^25.2.1"
+                     }
+}

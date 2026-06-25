@@ -1,0 +1,6 @@
+node_modules/
+temporary screenshots/
+server.log
+server.err
+temp_shot*.mjs
+package-lock.json
