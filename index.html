@@ -1021,6 +1021,7 @@
       });
 
       if (res.ok) {
+        window.va?.('event', { name: 'Contact Form Submitted' });
         form.style.display = 'none';
         document.getElementById('success-msg').style.display = 'block';
       } else {
