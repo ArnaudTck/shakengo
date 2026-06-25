@@ -693,21 +693,21 @@
     </div>
 
     <!-- Stats -->
-    <div class="rsp-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1d3a5c;border-radius:20px;overflow:hidden;margin-bottom:48px;">
+    <div id="marche-stats" class="rsp-stats" style="display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:#1d3a5c;border-radius:20px;overflow:hidden;margin-bottom:48px;">
       <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
-        <div class="stat-number">10M+</div>
+        <div class="stat-number" data-count="10" data-suffix="M+">0M+</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">licenciés<br />en salle de sport</div>
       </div>
       <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
-        <div class="stat-number">68%</div>
+        <div class="stat-number" data-count="68" data-suffix="%">0%</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">consomment des<br />compléments sportifs</div>
       </div>
       <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
-        <div class="stat-number">+8%</div>
+        <div class="stat-number" data-count="8" data-prefix="+" data-suffix="%">+0%</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">croissance annuelle<br />du marché protéines</div>
       </div>
       <div class="rsp-stat-cell" style="background:#0f2040;padding:36px 24px;text-align:center;">
-        <div class="stat-number">5–8€</div>
+        <div class="stat-number" data-range="5-8" data-suffix="€">0–0€</div>
         <div style="font-size:0.8rem;color:#6b8aad;margin-top:8px;line-height:1.4;">prix moyen<br />d'un shake premium</div>
       </div>
     </div>
@@ -929,12 +929,7 @@
 <footer style="background:#070e1a;border-top:1px solid #1d3a5c;padding:40px 24px;">
   <div style="max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;">
     <div style="display:flex;align-items:center;gap:10px;">
-      <div style="width:28px;height:28px;background:#22c55e;border-radius:7px;display:flex;align-items:center;justify-content:center;">
-        <svg width="14" height="14" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M5 3h8l-1.5 4H6.5L5 3z" fill="#070e1a" opacity="0.6"/>
-          <path d="M6 7h6l-1 7H7L6 7z" fill="#070e1a"/>
-        </svg>
-      </div>
+      <img src="assets/logo.png" alt="ShakeNGo logo" style="height:36px;width:auto;display:block;" />
       <span style="font-family:'Fraunces',serif;font-weight:700;color:#f0f6ff;font-size:1rem;">ShakeNGo</span>
     </div>
 
@@ -978,16 +973,51 @@
     }
   }
 
-  // Intersection observer for stat counters
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.style.animation = 'count-up 0.6s cubic-bezier(0.4,0,0.2,1) both';
-      }
-    });
-  }, { threshold: 0.2 });
+  // Count-up animation for Le Marché stats
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
 
-  document.querySelectorAll('.stat-number').forEach(el => observer.observe(el));
+  function runCount(el, target, prefix, suffix, duration) {
+    const start = performance.now();
+    (function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const v = Math.round(easeOutCubic(p) * target);
+      el.textContent = prefix + v + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = prefix + target + suffix;
+    })(start);
+  }
+
+  function runRange(el, lo, hi, suffix, duration) {
+    const start = performance.now();
+    (function step(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const e = easeOutCubic(p);
+      const vLo = Math.round(e * lo);
+      const vHi = Math.round(e * hi);
+      el.textContent = vLo + '–' + vHi + suffix;
+      if (p < 1) requestAnimationFrame(step);
+      else el.textContent = lo + '–' + hi + suffix;
+    })(start);
+  }
+
+  const marcheObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      marcheObserver.unobserve(entry.target);
+      const duration = 1800;
+      entry.target.querySelectorAll('[data-count],[data-range]').forEach(el => {
+        if (el.dataset.range) {
+          const [lo, hi] = el.dataset.range.split('-').map(Number);
+          runRange(el, lo, hi, el.dataset.suffix || '', duration);
+        } else {
+          runCount(el, Number(el.dataset.count), el.dataset.prefix || '', el.dataset.suffix || '', duration);
+        }
+      });
+    });
+  }, { threshold: 0.3 });
+
+  const marcheStats = document.getElementById('marche-stats');
+  if (marcheStats) marcheObserver.observe(marcheStats);
 </script>
 
 </body>
