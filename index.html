@@ -819,7 +819,7 @@
       <p style="color:#6b8aad;font-size:0.95rem;line-height:1.7;">Laissez-nous vos coordonnées. Nous vous recontactons sous 48h pour discuter de votre projet.</p>
     </div>
 
-    <form style="background:#0f2040;border:1px solid #1d3a5c;border-radius:24px;padding:40px;" onsubmit="handleSubmit(event)">
+    <form id="contact-form" style="background:#0f2040;border:1px solid #1d3a5c;border-radius:24px;padding:40px;" onsubmit="handleSubmit(event)">
       <div style="display:flex;flex-direction:column;gap:20px;">
 
         <div>
@@ -888,15 +888,35 @@
 </footer>
 
 <script>
-  function handleSubmit(e) {
+  const FORMSPREE_ID = 'YOUR_FORM_ID'; // ← remplacer par votre ID Formspree
+
+  async function handleSubmit(e) {
     e.preventDefault();
+    const form = e.target;
     const btn = document.getElementById('submit-btn');
+
+    btn.disabled = true;
     btn.style.opacity = '0.7';
-    btn.textContent = 'Envoi en cours…';
-    setTimeout(() => {
-      e.target.style.display = 'none';
-      document.getElementById('success-msg').style.display = 'block';
-    }, 1200);
+    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Envoi en cours…';
+
+    try {
+      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' },
+      });
+
+      if (res.ok) {
+        form.style.display = 'none';
+        document.getElementById('success-msg').style.display = 'block';
+      } else {
+        throw new Error();
+      }
+    } catch {
+      btn.disabled = false;
+      btn.style.opacity = '1';
+      btn.innerHTML = '← Erreur — réessayez ou écrivez à <a href="mailto:contact@shakengo.fr" style="color:#f0f6ff">contact@shakengo.fr</a>';
+    }
   }
 
   // Intersection observer for stat counters
